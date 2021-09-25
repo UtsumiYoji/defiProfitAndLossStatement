@@ -1,6 +1,6 @@
 import requests
 
-class ExplorerControl:
+class explorerControl:
     def __init__(self, url:str, api:str) -> None:
         #Scanのurlとapiをインスタンスに格納
         self.url = url
@@ -59,7 +59,7 @@ class ExplorerControl:
         #リクエストを送信，返す
         return requests.get(request).json()
 
-    def getTransaction(self, hash:int):
+    def getTransaction(self, hash:str):
         #リクエストURLを構成
         request = 'https://' + self.url + '/api?module=proxy&action=eth_getTransactionByHash' + \
             '&txhash=' + hash + '&apikey=' + self.api
