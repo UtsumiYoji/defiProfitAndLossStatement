@@ -1,6 +1,6 @@
 import requests
 
-class ExplorerControl:
+class explorerControl:
     def __init__(self, url:str, api:str) -> None:
         #Scanのurlとapiをインスタンスに格納
         self.url = url
