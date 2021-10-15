@@ -37,14 +37,16 @@ class transactionConnection:
         if normalTx['message'] == 'OK':
             # データ取得が成功したらデータの数だけループ
             for data in normalTx['result']:
-                self.dataProcessing(data, symbol, contract, data['value'])
+                value = (int(data['value']) * 10 ** -18)
+                self.dataProcessing(data, symbol, contract, value)
 
         # インターナルトランザクションを取得
         internalTX = ins.internalTransactions(sBlock, eBlock)
         if internalTX['message'] == 'OK':
             # データ取得が成功したらデータの数だけループ
             for data in normalTx['result']:
-                self.dataProcessing(data, symbol, contract, data['value'])
+                value = (int(data['value']) * 10 ** -18)
+                self.dataProcessing(data, symbol, contract, value)
 
         # スマートコンストラクトトランザクションを取得
         tokenTx = ins.tokenTransactions(sBlock, eBlock)
@@ -61,3 +63,6 @@ class transactionConnection:
             for data in nftTx['result']:
                 value = int(data['value']) * (10 ** -int(data['tokenDecimal']))
                 self.dataProcessing(data, data['tokenSymbol'], data['contractAddress'], value)
+
+        #エラー処理のガス代合計値を取得
+        
