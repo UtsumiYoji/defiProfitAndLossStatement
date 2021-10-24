@@ -59,7 +59,7 @@ class explorerControl:
         #リクエストを送信，返す
         return requests.get(request).json()
 
-    def getTransaction(self, hash:int):
+    def getTransaction(self, hash:str):
         #リクエストURLを構成
         request = 'https://' + self.url + '/api?module=proxy&action=eth_getTransactionByHash' + \
             '&txhash=' + hash + '&apikey=' + self.api
