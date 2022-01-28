@@ -15,6 +15,13 @@ def main():
     # シートの名前をつけてあげる
     sh.title = 'Sheet'
 
+    # 初期保持量を出力
+    for j in range(len(cryptoPrice)):
+        sh.cell(j+1, len(cryptoPrice)+6).value = 'crypto' + str(j+1)
+        sh.cell(j+1, len(cryptoPrice)+7).value = cryptoPrice[j]
+        sh.cell(j+1, len(cryptoPrice)+8).value = cryptoAmount[j]
+        sh.cell(j+1, len(cryptoPrice)+9).value = cryptoAmount[j] * cryptoPrice[j]
+
     # 100回ループする
     for i in range(100):
         # 通貨の数ループする
@@ -47,9 +54,9 @@ def main():
 
         # 最終保持量を出力
         for j in range(len(cryptoPrice)):
-            sh.cell(j+1, len(cryptoPrice)+6).value = 'crypto' + str(j+1)
-            sh.cell(j+1, len(cryptoPrice)+7).value = cryptoAmount[j]
-            sh.cell(j+1, len(cryptoPrice)+8).value = cryptoAmount[j] * cryptoPrice[j]
+            sh.cell(j+1, len(cryptoPrice)+10).value = cryptoPrice[j]
+            sh.cell(j+1, len(cryptoPrice)+11).value = cryptoAmount[j]
+            sh.cell(j+1, len(cryptoPrice)+12).value = cryptoAmount[j] * cryptoPrice[j]
             
     # ブックを保存
     wb.save('./' + datetime.now().strftime('%Y%m%d%H%M%S') + ' サンプルデータ.xlsx')
