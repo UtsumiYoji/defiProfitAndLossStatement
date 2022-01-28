@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 class swapCalculation:
     def __init__(self) -> None:
         self.amount = {}
