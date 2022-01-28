@@ -17,10 +17,10 @@ def main():
 
     # 初期保持量を出力
     for j in range(len(cryptoPrice)):
-        sh.cell(j+1, len(cryptoPrice)+6).value = 'crypto' + str(j+1)
-        sh.cell(j+1, len(cryptoPrice)+7).value = cryptoPrice[j]
-        sh.cell(j+1, len(cryptoPrice)+8).value = cryptoAmount[j]
-        sh.cell(j+1, len(cryptoPrice)+9).value = cryptoAmount[j] * cryptoPrice[j]
+        sh.cell(j+1, len(cryptoPrice)+8).value = 'crypto' + str(j+1)
+        sh.cell(j+1, len(cryptoPrice)+9).value = cryptoPrice[j]
+        sh.cell(j+1, len(cryptoPrice)+10).value = cryptoAmount[j]
+        sh.cell(j+1, len(cryptoPrice)+11).value = cryptoAmount[j] * cryptoPrice[j]
 
     # 100回ループする
     for i in range(100):
@@ -46,7 +46,9 @@ def main():
         # 取引量と取引通貨を記録
         sh.cell(i+1, len(cryptoPrice)+2).value = changeAmount
         sh.cell(i+1, len(cryptoPrice)+3).value = cryptoA+1
-        sh.cell(i+1, len(cryptoPrice)+4).value = cryptoB+1
+        sh.cell(i+1, len(cryptoPrice)+4).value = changeAmount * cryptoAmount[cryptoA]
+        sh.cell(i+1, len(cryptoPrice)+5).value = cryptoB+1
+        sh.cell(i+1, len(cryptoPrice)+6).value = (changeAmount * cryptoAmount[cryptoA] * cryptoPrice[cryptoA])/cryptoPrice[cryptoB]
 
         # 取引を行う
         cryptoAmount[cryptoA] -= changeAmount * cryptoAmount[cryptoA]
@@ -54,9 +56,9 @@ def main():
 
         # 最終保持量を出力
         for j in range(len(cryptoPrice)):
-            sh.cell(j+1, len(cryptoPrice)+10).value = cryptoPrice[j]
-            sh.cell(j+1, len(cryptoPrice)+11).value = cryptoAmount[j]
-            sh.cell(j+1, len(cryptoPrice)+12).value = cryptoAmount[j] * cryptoPrice[j]
+            sh.cell(j+1, len(cryptoPrice)+12).value = cryptoPrice[j]
+            sh.cell(j+1, len(cryptoPrice)+13).value = cryptoAmount[j]
+            sh.cell(j+1, len(cryptoPrice)+14).value = cryptoAmount[j] * cryptoPrice[j]
             
     # ブックを保存
     wb.save('./' + datetime.now().strftime('%Y%m%d%H%M%S') + ' サンプルデータ.xlsx')

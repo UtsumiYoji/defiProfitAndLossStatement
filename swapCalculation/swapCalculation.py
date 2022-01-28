@@ -2,6 +2,7 @@ class swapCalculation:
     def __init__(self) -> None:
         self.amount = {}
         self.averageCost = {}
+        self.profit = 0
 
     def addAmount(self, cryptoName:str, amount:float, averageCost:float):
         # 初めて扱う通貨なら0残高を追加
@@ -35,6 +36,8 @@ class swapCalculation:
         self.amount[afterCryptoName] += afterCryptoAmount
 
         # 取引の内容について表示する
-        print('スワップ前：' + beforeCryptoName + ' ' + beforeCryptoAmount + '枚（平均取得単価：' + self.averageCost[beforeCryptoName] + '）')
-        print('スワップ後：' + afterCryptoName + ' ' + afterCryptoAmount + '枚購入')
+        print('スワップ前：' + beforeCryptoName + ' ' + str(beforeCryptoAmount) + '枚（平均取得単価：' + str(self.averageCost[beforeCryptoName]) + '）')
+        print('スワップ後：' + afterCryptoName + ' ' + str(afterCryptoAmount) + '枚購入')
         print('損益計算：' + str(round((afterCryptoAmount*afterCryptoPrice) - (self.averageCost[beforeCryptoName]*beforeCryptoAmount), 5)) + 'の損益\n')
+
+        self.profit += ((afterCryptoAmount*afterCryptoPrice) - (self.averageCost[beforeCryptoName]*beforeCryptoAmount))
